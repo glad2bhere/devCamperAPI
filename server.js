@@ -1,5 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
+//if we were to bring in custom logger we made --> const logger = require('./middleware/logger')
+const morgan = require('morgan');
 
 //Rpute files
 const bootcamps = require('./routes/bootcamps');
@@ -9,6 +11,13 @@ const bootcamps = require('./routes/bootcamps');
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
+
+// if we were to use the custom logger I built --> app.use(logger);
+//Instead, usinng Dev logging Middleware (require Morgan). 
+ if (process.env.NODE_ENV === 'development') { //Only want this to run if inn the dev environment
+    app.use(morgan('dev'));
+ }
+
 
 //Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
