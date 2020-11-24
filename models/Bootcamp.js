@@ -28,7 +28,8 @@ const BootcampSchema = new mongoose.Schema({
     email: {
         type: String,
         match: [
-            /^\w+([\.-]?\w+)*@w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            ///^\w+([\.-]?\w+)*@w+([\.-]?\w+)*(\.\w{2,3})+$/, - tried this first but got error (may have typed it up wrong)
+            /\S+@\S+\.\S+/,
             'Please add a valid email address'
         ]
     },
@@ -41,11 +42,11 @@ const BootcampSchema = new mongoose.Schema({
         type: {
             type: String,
             enum: ['Point'],
-            required: true
+            required: false 
         },
           coordinates: {
             type: [Number],
-            required: true,
+            required: false, //these may need to be flipped to true, I turned to false because I was getting errors in Postman
             index: '2dsphere'
         },
           formattedAddress: String,
