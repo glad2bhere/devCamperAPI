@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 //if we were to bring in custom logger we made --> const logger = require('./middleware/logger')
 const morgan = require('morgan');
 const colors = require('colors');
+const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db')
 
 //Load env variables
@@ -29,6 +30,7 @@ app.use(express.json());
 //Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
 
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
