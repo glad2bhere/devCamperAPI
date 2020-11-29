@@ -6,4 +6,4 @@ class ErrorResponse extends Error {
 
 }
 
-module.export = ErrorResponse;
+module.exports = ErrorResponse;
